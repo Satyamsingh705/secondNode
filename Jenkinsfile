@@ -1,8 +1,12 @@
 pipeline {
     agent any
     
+    tools {
+        nodejs 'NodeJS' // Make sure this tool is configured in Jenkins
+    }
+    
     environment {
-        DOCKER_HUB_CREDS = credentials('satyamkumar7050')
+        DOCKER_HUB_CREDS = credentials('docker-hub-credentials')
         DOCKER_IMAGE = "satyamkumar7050/docker-frontend"
         DOCKER_TAG = "${env.BUILD_NUMBER}"
     }
@@ -38,15 +42,11 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                // Simple deployment - you might replace this with actual deployment commands
                 sh "docker stop frontend-container || true"
                 sh "docker rm frontend-container || true"
                 sh "docker run -d -p 3000:3000 --name frontend-container ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                // Perform logout in the last stage where we still have node context
                 sh "docker logout"
             }
         }
     }
-    
-    // Remove the problematic post section
 }
