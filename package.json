@@ -1,0 +1,13 @@
+{
+    "name": "docker-frontend",
+    "version": "1.0.0",
+    "description": "Simple Node.js application with Docker",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js",
+      "test": "echo \"No tests specified\" && exit 0"
+    },
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
