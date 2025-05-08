@@ -6,7 +6,7 @@ pipeline {
     }
     
     environment {
-        DOCKER_HUB_CREDS = credentials('docker-hub-credentials')
+        DOCKER_HUB_CREDS = credentials('satyamkumar7050')
         DOCKER_IMAGE = "satyamkumar7050/docker-frontend"
         DOCKER_TAG = "${env.BUILD_NUMBER}"
     }
